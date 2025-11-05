@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title ?? 'Conversor de Moedas' ?></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Conversor de Moedas</h1>
+    </header>
+
+    <main>
+        <section class="container-principal">
+            <form method="POST" action="" class="form-conversor" id="formConversor">
+
+                <div class="grupo-campo">
+                    <p>Quantia:</p>
+                    <div class="campo">
+                        <input type="number" name="amount" id="amount" step="0.01" placeholder="Digite o valor" required>
+                        <select name="from" id="from" required>
+                            <option value="">Selecione</option>
+                            <?php foreach ($currencies as $code => $name): ?>
+                                <option value="<?= $code ?>">
+                                    <?php
+                                    $bandeiras = [
+                                        'USD' => '🇺🇸',
+                                        'EUR' => '🇪🇺',
+                                        'BRL' => '🇧🇷',
+                                        'GBP' => '🇬🇧',
+                                        'JPY' => '🇯🇵'
+                                    ];
+                                    echo $bandeiras[$code] ?? '';
+                                    ?>
+                                    <?= $code ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="circulo">
+                    ↑↓
+                </div>
+
+                <div class="grupo-campo">
+                    <p>Converter para:</p>
+                    <div class="campo">
+                        <div class="resultado" id="converted">
+                            <span>$ 0,00</span>
+                        </div>
+
+                        <select name="to" id="to" required>
+                            <option value="">Selecione</option>
+                            <?php foreach ($currencies as $code => $name): ?>
+                                <option value="<?= $code ?>">
+                                    <?php
+                                    $bandeiras = [
+                                        'USD' => '🇺🇸',
+                                        'EUR' => '🇪🇺',
+                                        'BRL' => '🇧🇷',
+                                        'GBP' => '🇬🇧',
+                                        'JPY' => '🇯🇵'
+                                    ];
+                                    echo $bandeiras[$code] ?? '';
+                                    ?>
+                                    <?= $code ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="botao">
+                    <input type="submit" value="Converter">
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
